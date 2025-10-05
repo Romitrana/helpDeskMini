@@ -10,7 +10,17 @@ const authRoutes = require("./src/routes/authRoutes");
 const ticketRoutes = require("./src/routes/ticketRoutes");
 
 app.use(express.json());
-app.use(cors());
+
+//testing deployed
+app.use(
+  cors({
+    origin: [
+      "https://help-desk-mini.vercel.app/", // <-- replace with your Vercel URL
+      "http://localhost:5173", // for local development
+    ],
+    credentials: true,
+  })
+);
 
 //routes
 app.use("/api/auth", authRoutes);
