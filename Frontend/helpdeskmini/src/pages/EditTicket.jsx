@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../api/axios";
-
+import styles from "../styles/edit.module.css"
 export default function EditTicket() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -47,11 +47,11 @@ export default function EditTicket() {
   if (!ticket) return <p>Ticket not found.</p>;
 
   return (
-    <div style={{ maxWidth: 600, margin: "2rem auto" }}>
+    <div className={styles.edit}>
       <h2>Edit Ticket</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title</label>
+        <div className={styles.field}> 
+          <label>Title</label><br/>
           <input
             type="text"
             value={title}
@@ -59,8 +59,8 @@ export default function EditTicket() {
             required
           />
         </div>
-        <div>
-          <label>Description</label>
+        <div className={styles.field}>
+          <label>Description</label><br/>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import API from "../api/axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import styles from '../styles/ticket.module.css'
 export default function BreachedTickets() {
   const { user } = useContext(AuthContext);
   const token = localStorage.getItem("token");
@@ -49,7 +49,7 @@ export default function BreachedTickets() {
   if (tickets.length === 0) return <p>No breached tickets!</p>;
 
   return (
-    <div style={{ maxWidth: "800px", margin: "2rem auto" }}>
+    <div className={styles.ticket_container}>
       <h2>Breached Tickets</h2>
       <ul>
         {tickets.map((ticket) => (
@@ -73,7 +73,7 @@ export default function BreachedTickets() {
       </ul>
 
       {/* Simple pagination */}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div  className={styles.pagination}>
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           Previous
         </button>

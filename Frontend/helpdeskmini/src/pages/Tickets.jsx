@@ -1,9 +1,8 @@
-// src/pages/Tickets.jsx
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import { AuthContext } from "../context/AuthContext";
-
+import styles from "../styles/ticket.module.css";
 export default function Tickets() {
   const { user } = useContext(AuthContext);
   const token = localStorage.getItem("token");
@@ -46,21 +45,12 @@ export default function Tickets() {
   if (tickets.length === 0) return <p>No tickets found.</p>;
 
   return (
-    <div style={{ maxWidth: "800px", margin: "2rem auto" }}>
+    <div className={styles.ticket_container}>
       <h2>Tickets</h2>
 
       <ul>
         {tickets.map((t) => (
-          <li
-            key={t._id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "1rem",
-              marginBottom: "1rem",
-              borderRadius: "6px",
-              position: "relative", // for edit icon positioning
-            }}
-          >
+          <li key={t._id}>
             <Link to={`/tickets/${t._id}`}>
               <h3>{t.title}</h3>
             </Link>
@@ -77,12 +67,17 @@ export default function Tickets() {
                   top: "1rem",
                   right: "1rem",
                   cursor: "pointer",
-                  fontSize: "1.2rem",
+                  fontSize: "1rem",
+                  color:"#fff"
                 }}
                 title="Edit Ticket"
                 onClick={() => navigate(`/tickets/${t._id}/edit`)}
               >
-                ✏️
+                <i class="fa fa-pencil"style={{
+                  fontSize: "0.9rem",
+                  marginRight:"0.2rem",
+                  color:"#fff"
+                }}></i>Edit
               </span>
             )}
           </li>
@@ -91,11 +86,7 @@ export default function Tickets() {
 
       {/* Pagination buttons */}
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "1rem",
-        }}
+        className={styles.pagination}
       >
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           Previous

@@ -1,4 +1,4 @@
-// src/pages/TicketDetail.jsx
+import styles from "../styles/details.module.css"
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import API from "../api/axios";
@@ -80,7 +80,7 @@ export default function TicketDetail() {
   if (!ticket) return <p>No ticket found.</p>;
 
   return (
-    <div style={{ maxWidth: "800px", margin: "2rem auto" }}>
+    <div className={styles.details}>
       <h2>{ticket.title}</h2>
       <p>{ticket.description}</p>
       <p>
@@ -111,7 +111,7 @@ export default function TicketDetail() {
       {comments.length === 0 ? (
         <p>No comments yet.</p>
       ) : (
-        <ul>
+        <ul className={styles.comments}>
           {comments.map((c) => (
             <li key={c._id}>
               <strong>{c.userId?.username || "User"}:</strong> {c.text}

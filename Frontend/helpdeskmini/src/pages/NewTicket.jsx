@@ -1,14 +1,10 @@
-// src/pages/NewTicket.jsx
+
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import { AuthContext } from "../context/AuthContext";
+import styles from  "../styles/newticket.module.css"
 
-/**
- * NewTicket page
- * - Only users should be able to reach this route (router-level protection expected).
- * - Uses Idempotency-Key header to help with safe retries.
- */
 export default function NewTicket() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -70,20 +66,20 @@ export default function NewTicket() {
   // Basic guard (route should handle this too)
   if (!user || user.role !== "user") {
     return (
-      <div style={{ maxWidth: 700, margin: "2rem auto" }}>
+      <div className={styles.container}>
         <p>You are not authorized to create tickets.</p>
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: 700, margin: "2rem auto" }}>
-      <h2>Create New Ticket</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Create New Ticket</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className={styles.error}>{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "0.5rem" }}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div   className={styles.field}>
           <label>
             Title
             <br />
@@ -92,12 +88,12 @@ export default function NewTicket() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              style={{ width: "100%", padding: "0.5rem" }}
+              className={styles.input}
             />
           </label>
         </div>
 
-        <div style={{ marginBottom: "0.5rem" }}>
+        <div  className={styles.field}>
           <label>
             Description
             <br />
@@ -106,18 +102,19 @@ export default function NewTicket() {
               onChange={(e) => setDescription(e.target.value)}
               required
               rows={6}
-              style={{ width: "100%", padding: "0.5rem" }}
+              className={styles.textarea}
             />
           </label>
         </div>
 
-        <div style={{ marginBottom: "0.5rem" }}>
+        <div className={styles.field}>
           <label>
             Priority
             <br />
             <select
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
+              className={styles.select}
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -127,7 +124,7 @@ export default function NewTicket() {
         </div>
 
         <div>
-          <button type="submit" disabled={loading}>
+          <button type="submit" disabled={loading} className={styles.button}>
             {loading ? "Creating..." : "Create Ticket"}
           </button>
         </div>

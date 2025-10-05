@@ -1,4 +1,4 @@
-// src/pages/Register.jsx
+import styles from "../styles/register.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
@@ -32,12 +32,12 @@ export default function Register() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "2rem auto" }}>
+    <div className={styles.main}>
       <h2>Register</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username</label>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label className={styles.label}>
+          Username
           <input
             name="username"
             type="text"
@@ -45,9 +45,9 @@ export default function Register() {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
-          <label>Email</label>
+        </label>
+        <label className={styles.label}>
+          Email
           <input
             name="email"
             type="email"
@@ -55,9 +55,9 @@ export default function Register() {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
-          <label>Password</label>
+        </label>
+        <label className={styles.label}>
+          Password
           <input
             name="password"
             type="password"
@@ -65,10 +65,13 @@ export default function Register() {
             onChange={handleChange}
             required
           />
-        </div>
-        <button type="submit" disabled={loading}>
+        </label>
+        <button type="submit" disabled={loading} className={styles.logbtn}>
           {loading ? "Registering..." : "Register"}
         </button>
+        <p>
+        Already have an account? <a href="/login">Login</a>
+      </p>
       </form>
     </div>
   );

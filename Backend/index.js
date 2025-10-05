@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://help-desk-mini.vercel.app/", // <-- replace with your Vercel URL
+      "https://help-desk-mini.vercel.app/",
       "http://localhost:5173", // for local development
     ],
     credentials: true,

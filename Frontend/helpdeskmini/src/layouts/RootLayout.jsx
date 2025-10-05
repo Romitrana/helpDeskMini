@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
-
+import styles from './Root.module.css'
 export default function RootLayout() {
   return (
-    <div>
+    <div className={styles.rootlayout}>
       <Navbar /> 
-      <main style={{ padding: "1rem" }}>
+      <main className={styles.root_main}>
         <Outlet /> {/* Render child routes here */}
       </main>
     </div>

@@ -1,4 +1,5 @@
 // src/pages/Login.jsx
+import styles from "../styles/login.module.css";
 import { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import API from "../api/axios.js";
@@ -31,11 +32,11 @@ export default function Login() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "2rem auto" }}>
+    <div className={styles.main}>
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label className={styles.label}>
           Email
           <input
             type="email"
@@ -45,7 +46,7 @@ export default function Login() {
           />
         </label>
         <br />
-        <label>
+        <label className={styles.label}>
           Password
           <input
             type="password"
@@ -55,8 +56,11 @@ export default function Login() {
           />
         </label>
         <br />
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.logbtn}>Login</button>
       </form>
+      <p>
+        Don’t have an account? <a href="/register">Register</a>
+      </p>
     </div>
   );
 }
