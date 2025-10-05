@@ -2,7 +2,8 @@ import axios from "axios";
 
 // Axios instance
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  //   baseURL: "http://localhost:5000/api",
+  baseURL: "https://helpdeskmini-celn.onrender.com/api",
 });
 
 // Attach JWT token automatically to every request if available
